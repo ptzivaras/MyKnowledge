@@ -10,7 +10,7 @@ Udemy
 
 Company 
 
-0) Java on Android Studio .. 
+0) Java on Android Studio...
 
 1)Activities, Fragments, Intents, LifeCycle of Fragments/Activities
 
