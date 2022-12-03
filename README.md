@@ -10,6 +10,8 @@ Udemy
 
 Company 
 
+0) Java on Android Studio .. 
+
 1)Activities, Fragments, Intents, LifeCycle of Fragments/Activities
 
 2)RecycleView, RecycleView with different Layouts depending what i click on a spinner for example
