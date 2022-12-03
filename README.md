@@ -9,6 +9,7 @@ Udemy
 4) React Course, Extremely beginner.. need more time
 
 Company 
+
 1)Activities, Fragments, Intents, LifeCycle of Fragments/Activities
 
 2)RecycleView, RecycleView with different Layouts depending what i click on a spinner for example
@@ -28,7 +29,8 @@ Company
 
 7)Postman, learned postman to test api calls..loved it
 
-8) Live Data on Graphs[ On live time show in Heatmap, LineGraphs] using a service.
+8) Live Data on Graphs[ On live time show in Heatmap, LineGraphs] using a service(I was given an example and i was asked to copy it and redo the process a couple
+   of times).
 
 9)Design.. writing XML Code or using Android studio Design TAB.
 
