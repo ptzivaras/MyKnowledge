@@ -42,3 +42,5 @@ Company
 11)Almost finished Transfer Data with BlueTooth Low Energy 70%done
 
 12)Logs, Debugger(Saved me..), Unit Tests(Very usefull saves time)
+
+13)Git Plugin on Android Studio, Github for Repository..
