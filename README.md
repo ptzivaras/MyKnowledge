@@ -10,7 +10,8 @@ Udemy
 
 Company 
 
-0) Java on Android Studio...
+0)Java on Android Studio(I decided to focus on core java since i had problems with my job tasks so i bought UDEMY Course & to prove to myself that i am  OK! since i
+  am a Junior), StackOverflow, Youtube, Forums etc
 
 1)Activities, Fragments, Intents, LifeCycle of Fragments/Activities
 
