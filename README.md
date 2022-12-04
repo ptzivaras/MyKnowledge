@@ -8,6 +8,14 @@ Udemy
 3) SQL  Course, Almost finished 17/22 Hours
 4) React Course, Extremely beginner.. need more time
 
+HomeWork
+1)SQLITE,Postgre, JDBC(Connect,Create,Update to DB etc..), PGADMIN
+2)Server in NODEJ and with android POST DATA..
+3)Calculator,TODO LIST in React
+4)APIS in React
+5)Simple site in html,css,js
+6)Unity 
+
 Company 
 
 0)Java on Android Studio(I decided to focus on core java since i had problems with my job tasks so i bought UDEMY Course & to prove to myself that i am  OK! since i
