@@ -10,8 +10,11 @@ This is my Live Diary to check my progress in 1 Year
 
 # HomeWork
 1)SQLITE,Postgre, JDBC(Connect,Create,Update to DB etc..), PGADMIN 
+
 2)Server in NODE.JS and with android POST DATA..
+
 3)Calculator,TODO LIST, Apis in React
+
 4)Simple site in html,css,js
 
 # Company 
