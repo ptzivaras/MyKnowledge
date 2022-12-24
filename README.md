@@ -47,6 +47,7 @@ This is my Live Diary to check my progress in 1 Year
 13)Git Plugin on Android Studio, Github for Repository..
 
 # RoadMap
+
 1) OOP (Interface Abstract Polymorphism Inheritance Encapsuation, ACCESS Modifiers, COnstructors etc)
 
 2) Collection & DataStructure (array,arraylist, list, linkedlist, set & map types, stack, queue)
