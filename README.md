@@ -3,12 +3,14 @@
 This is my Live Diary to check my progress in 1 Year
 
 # Udemy
+
 1) 3 Android Courses,  Finished 1 the Rest are 35% but after 11 months i was moved to Xamal-Xamarin & #C code so i stopped.
 2) Java Course[Finished]
 3) SQL  Course[Finished]
 4) React Course, Extremely beginner.. need more time
 
 # HomeWork
+
 1)SQLITE,Postgre, JDBC(Connect,Create,Update to DB etc..), PGADMIN 
 
 2)Server in NODE.JS and with android POST DATA..
@@ -18,6 +20,7 @@ This is my Live Diary to check my progress in 1 Year
 4)Simple site in html,css,js
 
 # Company 
+
 0)Java on Android Studio(I decided to focus on core java since i had problems with my job tasks so i bought UDEMY Course & to prove to myself that i am  OK! since i
   am a Junior), StackOverflow, Youtube, Forums etc
 
@@ -62,7 +65,7 @@ This is my Live Diary to check my progress in 1 Year
 
 7)File Handling, Java I/O (i understand but i dont use them daily so i forget)
 
-8)Threads, sync, multithread, runnable, handler,U/I Thread,  (basic stuff)
+8)Threads, sync, multithread, runnable, handler,U/I Thread, Object locking (basic stuff)
 
 9)equal types, override equals and hashcode
 
