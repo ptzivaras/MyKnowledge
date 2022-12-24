@@ -45,3 +45,18 @@ This is my Live Diary to check my progress in 1 Year
 12)Logs, Debugger(Saved me..), Unit Tests(Very usefull saves time & sometimes only way to fixsomething nefore DeadLine!!)
 
 13)Git Plugin on Android Studio, Github for Repository..
+
+# RoadMap
+1) OOP (Interface Abstract Polymorphism Inheritance Encapsuation, ACCESS Modifiers, COnstructors etc)
+2) Collection & DataStructure (array,arraylist, list, linkedlist, set & map types, stack, queue)
+3)Network(TCP UDP Sockets)
+4)DB (JDBC and play with DB)
+5)Handling Exception(try catch finally, throws, many catches, etc)
+6)Lamdas(i understand but i dont use them daily so i forget)
+7)File Handling, Java I/O (i understand but i dont use them daily so i forget)
+8)Threads, sync, multithread, runnable, handler,U/I Thread,  (basic stuff)
+9)equal types, override equals and hashcode
+10)APIS , dateAPI, ParseJSON, GSON,Serialization
+11)Data Visualization HeatMap, LineGraph, PointsGraph, Live Data with Service
+~)for each, comparator/iterator, static final super this, service, microservice, restfull, reflection, spring, springboot,spring hibernate,Java EE, React JS+,
+ 
