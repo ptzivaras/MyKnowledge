@@ -4,7 +4,7 @@ This is my Live Diary to check my progress in 1 Year
 
 # Udemy
 
-1) 3 Android Courses,  Finished 1 the Rest are 35% but after 11 months i was moved to Xamal-Xamarin & #C code so i stopped.
+1) 3 Android Courses,  Finished 1 the Rest are 45% but after 11 months i was moved to Xaml-Xamarin.Forms & #C code so i stopped.
 2) Java Course[Finished]
 3) SQL  Course[Finished]
 4) React Course, Extremely beginner.. need more time
