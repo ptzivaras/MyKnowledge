@@ -2,22 +2,30 @@
 
 This is my Live Diary to check my progress in 1 Year
 
+# Youtube Channels
+1)derekbanas  https://www.youtube.com/@derekbanas
+2)CodingSimplified  https://www.youtube.com/@CodingSimplified
+3)freecodecamp  https://www.youtube.com/@freecodecamp
+4)AmigosCode  https://www.youtube.com/@amigoscode
+5)Caleb Curry  https://www.youtube.com/@codebreakthrough
+6)Developedbyed  https://www.youtube.com/@developedbyed/videos
+7)DatabaseStar  https://www.youtube.com/@DatabaseStar/featured
+8)React Projects https://www.youtube.com/@javascriptmastery/videos
+9)CodeBeaty  https://www.youtube.com/@CodeBeauty/featured
+10)thenewboston https://www.youtube.com/@thenewboston/featured
+11)CodingWithJohn https://www.youtube.com/@CodingWithJohn/featured
+
+# To Do 2023
+1) https://www.youtube.com/playlist?list=PLt4nG7RVVk1g_LutiJ8_LvE914rIE5z4u
+2) System Design https://www.youtube.com/playlist?list=PLt4nG7RVVk1g_LutiJ8_LvE914rIE5z4u
+3) Database Design  https://www.youtube.com/playlist?list=PLZDOU071E4v6epq3GS0IqZicZc3xwwBN_
+
 # Udemy
 
 1) 3 Android Courses,  Finished 1 the Rest are 45% but after 11 months i was moved to Xaml-Xamarin.Forms & #C code so i stopped.
 2) Java Course[Finished]
 3) SQL  Course[Finished]
 4) React Course, Extremely beginner.. need more time
-
-# HomeWork
-
-1)SQLITE,Postgre, JDBC(Connect,Create,Update to DB etc..), PGADMIN 
-
-2)Server in NODE.JS and with android POST DATA..
-
-3)Calculator,TODO LIST, Apis in React
-
-4)Simple site in html,css,js
 
 # Company 
 
