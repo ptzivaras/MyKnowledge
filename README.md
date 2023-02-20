@@ -16,7 +16,7 @@ This is my Live Diary to check my progress in 1 Year
 11)CodingWithJohn https://www.youtube.com/@CodingWithJohn/featured
 
 # To Do 2023
-1) https://www.youtube.com/playlist?list=PLt4nG7RVVk1g_LutiJ8_LvE914rIE5z4u
+1) Design Patterns https://www.youtube.com/playlist?list=PLt4nG7RVVk1g_LutiJ8_LvE914rIE5z4u
 2) System Design https://www.youtube.com/playlist?list=PLt4nG7RVVk1g_LutiJ8_LvE914rIE5z4u
 3) Database Design  https://www.youtube.com/playlist?list=PLZDOU071E4v6epq3GS0IqZicZc3xwwBN_
 
