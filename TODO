@@ -41,3 +41,15 @@ public partial class MainPage : ContentPage
     }
 }
 In this code, the MainPage constructor creates an instance of the MockMainPageViewModel class and sets it as the BindingContext of the page. When the Button is clicked, the entered text is stored in the MyText property of the mock view model.
+///////////////////////////
+If you have another label that shows the string that you have saved, you can bind its Text property to the MyText property of your view model, just like you did with the Label in the example I provided earlier. Here's an updated version of the XAML code that includes a second label:
+
+php
+Copy code
+<StackLayout>
+    <Entry x:Name="myEntry" Placeholder="Enter some text"/>
+    <Button Text="Save" Clicked="OnSaveButtonClicked"/>
+    <Label x:Name="myLabel" Text="{Binding MyText}"/>
+    <Label x:Name="savedTextLabel" Text="{Binding MyText}"/>
+</StackLayout>
+In this code, the Text property of the second Label is bound to the MyText property of the view model using the same binding expression as the first Label.
