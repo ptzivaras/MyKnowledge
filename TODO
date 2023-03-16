@@ -1,1 +1,43 @@
+Sure, here's an example of how you can modify the code I provided earlier to use a mock view model for testing purposes:
 
+First, create an interface for your view model. This interface will be used by the mock view model to simulate the behavior of the real view model:
+csharp
+Copy code
+public interface IMainPageViewModel
+{
+    string MyText { get; set; }
+}
+Next, create a mock view model that implements the IMainPageViewModel interface. In this example, we'll use a simple implementation that stores the entered 
+text in a private field:
+kotlin
+Copy code
+public class MockMainPageViewModel : IMainPageViewModel
+{
+    private string _myText;
+
+    public string MyText
+    {
+        get { return _myText; }
+        set { _myText = value; }
+    }
+}
+In your XAML file, update the BindingContext of your page to use the mock view model instead of the real view model:
+csharp
+Copy code
+public partial class MainPage : ContentPage
+{
+    private readonly IMainPageViewModel _viewModel;
+
+    public MainPage()
+    {
+        InitializeComponent();
+        _viewModel = new MockMainPageViewModel();
+        BindingContext = _viewModel;
+    }
+
+    private void OnSaveButtonClicked(object sender, EventArgs e)
+    {
+        _viewModel.MyText = myEntry.Text;
+    }
+}
+In this code, the MainPage constructor creates an instance of the MockMainPageViewModel class and sets it as the BindingContext of the page. When the Button is clicked, the entered text is stored in the MyText property of the mock view model.
