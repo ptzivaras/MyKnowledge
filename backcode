@@ -1,0 +1,181 @@
+using HealthSonar.ViewModels;
+using HealthSonar.Pages.Contracts;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using XamarinForms.Models;
+
+namespace HealthSonar.Pages.Educational
+{
+    /// <summary>  
+    ///  This class implements the educational Page --- following the MVVM pattern.  
+    /// </summary>  
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EducationalPage : BasePage<EducationalViewModel>
+    {
+        public EducationalPage()
+        {
+            InitializeComponent();
+
+
+            
+
+            ///// <summary>  
+            ///// Initiate the Educational View Model
+            ///// <summary>
+            //var youtubeViewModel = new YoutubeViewModel();
+            //BindingContext = youtubeViewModel;
+
+            //lvDataBinding.SetBinding(ListView.ItemsSourceProperty, "YoutubeItems");
+            //lvDataBinding.ItemTapped += ListViewOnItemTapped;
+            //listView.ItemSelected += ListView_ItemSelected;
+
+
+            /// <summary>  
+            /// Listeners for list item tapping
+            /// <summary>
+            lvDataBinding.ItemTapped += (sender, e) =>
+            {
+                var youtubeItem = e.Item as YoutubeItem;
+                Xamarin.Forms.Device.OpenUri(new Uri("https://www.youtube.com/watch?v=" + youtubeItem?.VideoId));
+                // You can use Plugin.Share nuget package to open video in browser
+                //CrossShare.Current.OpenBrowser("https://www.youtube.com/watch?v=" + youtubeItem?.VideoId);
+                //CrossMediaManager.Current.Play("https://www.youtube.com/watch?v=" + youtubeItem?.VideoId, MediaFileType.Video);
+
+            };
+
+        }
+
+        // private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        //{
+        //    var youtubeItem = e.SelectedItem as YoutubeItem;
+
+        // You can use Plugin.Share nuget package to open video in browser
+        //    CrossShare.Current.OpenBrowser("https://www.youtube.com/watch?v=" + youtubeItem?.VideoId);
+        // }
+
+        private void ListViewOnItemTapped(object sender, ItemTappedEventArgs itemTappedEventArgs)
+        {
+            var youtubeItem = itemTappedEventArgs.Item as YoutubeItem;
+
+            //You can use Plugin.Share nuget package to open video in browser
+            Xamarin.Forms.Device.OpenUri(new Uri("https://www.youtube.com/watch?v=" + youtubeItem?.VideoId));
+        }
+
+       
+
+        /// <summary>
+        /// Call Initialize components
+        /// </summary>
+        //public override void CallInitializeComponents()
+        //{
+        //    InitializeComponent();
+        //}
+
+        //protected override void OnAppearing()
+        //{
+        //    InitGestures();
+        //    base.OnAppearing();
+        //}
+
+
+        //protected override void OnDisappearing()
+        //{
+        //    ReleaseGestures();
+        //    base.OnDisappearing();
+        //}
+
+        //private void InitGestures()
+        //{
+        //    tapGestureRecognizer1 = new TapGestureRecognizer();
+        //    tapGestureRecognizer1.Tapped += GestureEventHandler1;
+        //    notDysButton.GestureRecognizers.Add(tapGestureRecognizer1);
+
+        //    tapGestureRecognizer2 = new TapGestureRecognizer();
+        //    tapGestureRecognizer2.Tapped += GestureEventHandler2;
+        //    dysButton.GestureRecognizers.Add(tapGestureRecognizer2);
+
+        //    tapGestureRecognizer3 = new TapGestureRecognizer();
+        //    tapGestureRecognizer3.Tapped += GestureEventHandler3;
+        //    laterButton.GestureRecognizers.Add(tapGestureRecognizer3);
+
+
+
+
+        //}
+
+        //private void ReleaseGestures()
+        //{
+        //    tapGestureRecognizer1.Tapped -= GestureEventHandler1;
+        //    tapGestureRecognizer1 = null;
+
+        //    tapGestureRecognizer2.Tapped -= GestureEventHandler2;
+        //    tapGestureRecognizer2 = null;
+
+        //    tapGestureRecognizer3.Tapped -= GestureEventHandler3;
+        //    tapGestureRecognizer3 = null;
+        //}
+
+        //private void GestureEventHandler1(object s, EventArgs e)
+        //{
+        //    /// <summary>  
+        //    /// Listener for tapping On Button
+        //    /// <summary>
+        //    /// 
+        //   Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+        //   {
+
+        //        if (!CrossConnectivity.Current.IsConnected)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Error", "Check your internet connection", AppResources.OkString);
+
+        //        }
+        //        else
+        //        {
+        //            SendPatientStatus(STATUSON, ViewModel);
+        //        }
+
+        //        await Navigation.PushModalAsync(new PatientDyskinisiaPage());
+        //   });
+        //}
+
+        protected override void OnAppearing()
+        {
+            //InitGestures();
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            //ToolbarItems.Clear();
+            base.OnDisappearing();
+        }
+
+        /// <summary>
+        /// Call Initialize components
+        /// </summary>
+        public override void CallInitializeComponents()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>  
+        /// Listener for OnBackButton Pressed --- (Hardware back button)
+        /// <summary>
+        protected override bool OnBackButtonPressed()
+        {
+            BackButtonPressed();
+            return true;
+        }
+
+        public void BackButtonPressed()
+        {
+
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+            {
+                ((App)App.Current).PresentMainPage1();
+
+            });
+        }
+    }
+}
