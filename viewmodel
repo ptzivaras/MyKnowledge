@@ -1,0 +1,380 @@
+using HealthSonar.Client;
+using HealthSonar.Logging;
+using HealthSonar.ViewModels.Contracts;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using nexus.core.logging;
+using Plugin.Connectivity;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
+using XamarinForms.Models;
+
+namespace HealthSonar.ViewModels
+{
+
+    public class EducationalViewModel : BaseViewModel
+    {
+        public int videoCounter = 0;
+        public List<string> image;
+
+
+
+        // use this link to get an api_key : https://console.developers.google.com/apis/api/youtube/
+        private const string ApiKey = "AIzaSyB5WGhjrLpORhwiO6E2g7KUtp5vO57Kzro";
+
+        // doc : https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.videos.list
+        private string apiUrlForChannel = "https://www.googleapis.com/youtube/v3/search?part=id&maxResults=20&channelId="
+            + "UCIWrwLv3OAqWXSdbU-Vk_Ng"
+            //+ "Your_ChannelId"
+            + "&key="
+            + ApiKey;
+
+        // doc : https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.playlistItems.list
+        private string apiUrlForPlaylist = "https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=20&playlistId="
+            + "PLUwPvKZhaW-EGXQELQQSAC5pHe8DaDbqY"
+            //+ "Your_PlaylistId"
+            + "&key="
+            + ApiKey;
+
+        // doc : https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.search.list
+        private string apiUrlForVideosDetails = "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id="
+            + "{0}"
+            //+ "0ce22qhacyo,j8GU5hG-34I,_0aQJHoI1e8"
+            //+ "Your_Videos_Id"
+            + "&key="
+            + ApiKey;
+
+
+        public EducationalViewModel(INavigation navigation)
+        {
+            this.Navigation = navigation;
+        }
+
+        /// <summary>  
+        /// Define models
+        /// <summary>     
+        private List<YoutubeItem> _youtubeItems;
+
+        public List<YoutubeItem> YoutubeItems
+        {
+            get { return _youtubeItems; }
+
+            set
+            {
+                if (_youtubeItems != value)
+                {
+                    _youtubeItems = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+
+
+        private ICommand _doBackButton;
+
+        public ICommand DoBackButton
+        {
+            get
+            {
+                _doBackButton = _doBackButton ?? new Command(() => BackButton());
+                return _doBackButton;
+            }
+        }
+
+        private void BackButton()
+        {
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+            {
+                ((App)App.Current).PresentMainPage1();
+
+            });
+        }
+
+        /// <summary>  
+        /// Init constructors
+        /// <summary>
+        public EducationalViewModel()
+        {
+            _titleLabel = "Training";
+            RaisePropertyChanged();
+            // InitDataAsync();
+        }
+
+        //public async Task InitDataAsync()
+        //{
+        //    IsBusy = true;
+        //    LoadingBackground = (Color)Application.Current.Resources["HealthSonarDarkGrayColor"];
+
+        //    try
+        //    {
+
+
+        //        if (CrossConnectivity.Current.IsConnected)
+        //        {
+        //            await GetVideoIdsFromChannelAsync();
+        //            //if(videoIds.Count > 0)
+        //            //{
+
+        //            // }
+        //        }
+        //        else
+        //        {
+        //            _placeholderText = true;
+
+        //            await App.Current.MainPage.DisplayAlert(AppResources.InternetConnectionString, "", AppResources.OkString);
+
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var test = ex;
+        //    }
+
+        //    //TODO:
+        //    //var videoIds = await GetVideoIdsFromPlaylistAsync();
+        //}
+
+
+        ///// <summary>
+        ///// Get Video Ids From Channel
+        ///// </summary>
+        ///// <returns>A List<string></returns>
+        //private async Task GetVideoIdsFromChannelAsync()
+        //{
+        //    var httpClient = new HttpClient();
+
+        //    string LocaleUrl = "api/youtube/GetVideos";
+
+        //    string temp = App.Current.Properties["ServerUri"] as string;
+        //    temp = temp + "api/youtube/GetVideos/";
+        //    RestClient client = new RestClient(true);
+
+        //    var result = await client.Get<List<YoutubeItem>>(temp);
+
+        //    var json = await httpClient.GetStringAsync(temp);
+
+        //    var videoIds = new List<string>();
+
+        //    try
+        //    {
+        //        //JObject response = JsonConvert.DeserializeObject<dynamic>(json);
+        //        List<YoutubeItem> response = JsonConvert.DeserializeObject<List<YoutubeItem>>(json);
+
+        //        foreach (var item in response)
+        //        {
+        //            IsBusy = false;
+        //            LoadingBackground = Color.Transparent;
+        //            videoIds.Add(item.VideoId);
+        //            //YoutubeItems.Add(item);
+        //        }
+
+        //        //var items = res1.Value<JArray>("items");
+
+        //        //foreach (var item in items)
+        //        //{
+        //        //    videoIds.Add(item.Value<JObject>("id")?.Value<string>("videoId"));
+        //        //}
+
+        //        YoutubeItems = await GetVideosDetailsAsync(videoIds);
+
+
+        //        //List<YoutubeItem> res1 = JsonConvert.DeserializeObject<List<YoutubeItem>>(json);
+        //        ////JObject response = JsonConvert.DeserializeObject<dynamic>(json);
+
+        //        ////var items = response.Value<JArray>("items");
+        //        //YoutubeItems = new List<YoutubeItem>();
+        //        //foreach (var item in res1)
+        //        //{
+        //        //    IsBusy = false;
+        //        //    LoadingBackground = Color.Transparent;
+        //        //    YoutubeItems.Add(item);
+        //        //}
+
+        //        //if (!videoIds.Any())
+        //        //{
+        //        //    _placeholderText = true;
+        //        //}
+        //        //else
+        //        //{
+        //        //    _placeholderText = false;
+        //        //    YoutubeItems = await GetVideosDetailsAsync(videoIds);
+
+
+        //        //}
+
+
+
+
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        var test = exception;
+        //    }
+
+        //    if (videoIds.Any())
+        //    {
+        //    }
+
+        //    //return videoIds;
+        //}
+
+        ///// <summary>
+        ///// Get Video Ids From Playlist
+        ///// </summary>
+        ///// <returns>A List<string></returns>
+        //private async Task<List<string>> GetVideoIdsFromPlaylistAsync()
+        //{
+
+        //    var httpClient = new HttpClient();
+
+        //    var json = await httpClient.GetStringAsync(apiUrlForPlaylist);
+
+        //    var videoIds = new List<string>();
+
+        //    try
+        //    {
+        //        JObject response = JsonConvert.DeserializeObject<dynamic>(json);
+
+        //        var items = response.Value<JArray>("items");
+
+        //        foreach (var item in items)
+        //        {
+        //            videoIds.Add(item.Value<JObject>("contentDetails")?.Value<string>("videoId"));
+        //        };
+
+        //        YoutubeItems = await GetVideosDetailsAsync(videoIds);
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //    }
+
+        //    return videoIds;
+        //}
+
+
+        ///// <summary>
+        ///// Get Video Details
+        ///// </summary>
+        ///// <returns>A List<YoutubeItem></returns>
+        //private async Task<List<YoutubeItem>> GetVideosDetailsAsync(List<string> videoIds)
+        //{
+
+        //    var videoIdsString = "";
+        //    foreach (var s in videoIds)
+        //    {
+        //        videoIdsString += s + ",";
+        //    }
+
+        //    var httpClient = new HttpClient();
+
+        //    var json = await httpClient.GetStringAsync(string.Format(apiUrlForVideosDetails, videoIdsString));
+
+        //    var youtubeItems = new List<YoutubeItem>();
+
+        //    try
+        //    {
+        //        JObject response = JsonConvert.DeserializeObject<dynamic>(json);
+
+        //        var items = response.Value<JArray>("items");
+        //        int i = 0;
+
+        //        foreach (var item in items)
+        //        {
+        //            var snippet = item.Value<JObject>("snippet");
+        //            var statistics = item.Value<JObject>("statistics");
+
+        //            //TODO: refactor get the thumbnail from the api
+        //            i += 1;
+
+
+
+        //            var youtubeItem = new YoutubeItem
+        //            {
+        //                Title = snippet.Value<string>("title"),
+        //                Description = snippet.Value<string>("description"),
+        //                ChannelTitle = snippet.Value<string>("channelTitle"),
+        //                PublishedAt = snippet.Value<DateTime>("publishedAt"),
+        //                VideoId = item?.Value<string>("id"),
+        //                DefaultThumbnailUrl = snippet?.Value<JObject>("thumbnails")?.Value<JObject>("default")?.Value<string>("url"),
+        //                MediumThumbnailUrl = snippet?.Value<JObject>("thumbnails")?.Value<JObject>("medium")?.Value<string>("url"),
+        //                //HighThumbnailUrl = snippet?.Value<JObject>("thumbnails")?.Value<JObject>("high")?.Value<string>("url"),
+        //                //HighThumbnailUrl = image,
+
+        //                StandardThumbnailUrl = snippet?.Value<JObject>("thumbnails")?.Value<JObject>("standard")?.Value<string>("url"),
+        //                MaxResThumbnailUrl = snippet?.Value<JObject>("thumbnails")?.Value<JObject>("maxres")?.Value<string>("url"),
+
+        //                ViewCount = statistics?.Value<int>("viewCount"),
+        //                LikeCount = statistics?.Value<int>("likeCount"),
+        //                DislikeCount = statistics?.Value<int>("dislikeCount"),
+        //                FavoriteCount = statistics?.Value<int>("favoriteCount"),
+        //                CommentCount = statistics?.Value<int>("commentCount")
+
+
+        //                //Tags = (from tag in snippet?.Value<JArray>("tags") select tag.ToString())?.ToList(),
+        //            };
+        //            Logger.Instance.LogDebug($"DefaultThumbnailUrl {snippet?.Value<JObject>("thumbnails")?.Value<JObject>("high")?.Value<string>("url")}");
+
+        //            youtubeItem.DefaultThumbnailUrl = $"default{i}" + ".jpg";
+
+        //            if (i < 9)
+        //            {
+        //                youtubeItems.Add(youtubeItem);
+
+        //            }
+
+
+        //        }
+
+        //        return youtubeItems;
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        return youtubeItems;
+        //    }
+        //}
+
+        ///// <summary>
+        ///// PropertyChangedEventHandler:
+        ///// That component identifies the method that will handle the event
+        ///// </summary>
+        //public event PropertyChangedEventHandler PropertyChanged;
+
+        //protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    if (PropertyChanged != null)
+        //    {
+        //        PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //    }
+        //}
+
+
+
+
+
+        //private bool _placeholderText;
+
+        //public bool PlaceholderText
+        //{
+        //    get { return _placeholderText; }
+
+        //    set
+        //    {
+        //        if (_placeholderText != value)
+        //        {
+        //            _placeholderText = value;
+        //            RaisePropertyChanged();
+        //        }
+        //    }
+        //}
+    }
+}
