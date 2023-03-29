@@ -1,55 +1,156 @@
-Sure, here's an example of how you can modify the code I provided earlier to use a mock view model for testing purposes:
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:BasePage
+    x:Class="HealthSonar.Pages.Educational.EducationalPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:HealthSonar.CustomControls;assembly=HealthSonar"
+    xmlns:pages="clr-namespace:HealthSonar.Pages.Contracts;assembly=HealthSonar"
+    xmlns:translator="clr-namespace:HealthSonar.Helpers"
+    xmlns:viewModels="clr-namespace:HealthSonar.ViewModels;assembly=HealthSonar"
+    x:TypeArguments="viewModels:EducationalViewModel">
+    <AbsoluteLayout
+        BackgroundColor="#0A3758"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <StackLayout
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            Orientation="Vertical"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            Spacing="0">
 
-First, create an interface for your view model. This interface will be used by the mock view model to simulate the behavior of the real view model:
-csharp
-Copy code
-public interface IMainPageViewModel
-{
-    string MyText { get; set; }
-}
-Next, create a mock view model that implements the IMainPageViewModel interface. In this example, we'll use a simple implementation that stores the entered 
-text in a private field:
-kotlin
-Copy code
-public class MockMainPageViewModel : IMainPageViewModel
-{
-    private string _myText;
+            <!--<customControls:NavigationBarControl ></customControls:NavigationBarControl>-->
 
-    public string MyText
-    {
-        get { return _myText; }
-        set { _myText = value; }
-    }
-}
-In your XAML file, update the BindingContext of your page to use the mock view model instead of the real view model:
-csharp
-Copy code
-public partial class MainPage : ContentPage
-{
-    private readonly IMainPageViewModel _viewModel;
+            <!--  Toolbar Layout  -->
+            <Grid x:Name="toolbarLayout" BackgroundColor="{DynamicResource Key=pdMonitorOldRose}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <StackLayout
+                BackgroundColor="{DynamicResource Key=pdMonitorOldRose}"
+                HeightRequest="60"
+                Orientation="Horizontal"
+                Spacing="0"
+                VerticalOptions="Center">
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="10,5,10,0"
+                    HeightRequest="40"
+                    VerticalOptions="Center"
+                    WidthRequest="40">
+                    <customControls:ImageWithTap
+                        x:Name="WrapperBackButton"
+                        Aspect="AspectFill"
+                        Command="{Binding DoBackButton}"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        RotationY="{Binding ImageRotation}"
+                        Source="white_left_arrow.png"
+                        WidthRequest="40" />
+                </StackLayout>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontFamily="Roboto"
+                    FontSize="24"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width}"
+                    Text="{translator:Translate EducationalString}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
 
-    public MainPage()
-    {
-        InitializeComponent();
-        _viewModel = new MockMainPageViewModel();
-        BindingContext = _viewModel;
-    }
+            <StackLayout Padding="5,10" VerticalOptions="FillAndExpand">
+                <Label
+                    FontSize="22"
+                    Text="{translator:Translate ParkinsonTitleString}"
+                    FontFamily="Roboto"
+                    TextColor="White" />
 
-    private void OnSaveButtonClicked(object sender, EventArgs e)
-    {
-        _viewModel.MyText = myEntry.Text;
-    }
-}
-In this code, the MainPage constructor creates an instance of the MockMainPageViewModel class and sets it as the BindingContext of the page. When the Button is clicked, the entered text is stored in the MyText property of the mock view model.
-///////////////////////////
-If you have another label that shows the string that you have saved, you can bind its Text property to the MyText property of your view model, just like you did with the Label in the example I provided earlier. Here's an updated version of the XAML code that includes a second label:
+                <StackLayout
+                    Padding="5,30"
+                    BackgroundColor="White"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding PlaceholderText}"
+                    VerticalOptions="FillAndExpand">
+                    <Label
+                        FontSize="20"
+                        Text="{translator:Translate EducationalPlaceholderString}"
+                        TextColor="Red" />
+                </StackLayout>
 
-php
-Copy code
-<StackLayout>
-    <Entry x:Name="myEntry" Placeholder="Enter some text"/>
-    <Button Text="Save" Clicked="OnSaveButtonClicked"/>
-    <Label x:Name="myLabel" Text="{Binding MyText}"/>
-    <Label x:Name="savedTextLabel" Text="{Binding MyText}"/>
-</StackLayout>
-In this code, the Text property of the second Label is bound to the MyText property of the view model using the same binding expression as the first Label.
+                <!--  Youtube ListView  -->
+                <ListView
+                    x:Name="lvDataBinding"
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding YoutubeItems}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10,10,10,20" Orientation="Vertical">
+                                    <Label
+                                        FontSize="22"
+                                        Text="{Binding Title}"
+                                        TextColor="{DynamicResource Key=pdMonitorOldRose}" />
+                                    <Label
+                                        FontSize="14"
+                                        Text=""
+                                        TextColor="{DynamicResource Key=HealthSonarBlackColor}" />
+                                    <Image HeightRequest="200" Source="{Binding DefaultThumbnailUrl}" />
+                                    <!--<Label Text = "{Binding ChannelTitle}" TextColor="Maroon" FontSize="22"/> -->
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding ViewCount, StringFormat='{0:n0} views'}"
+                                            TextColor="{DynamicResource Key=HealthSonarBlueColor}" />
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding LikeCount, StringFormat='{0:n0} likes'}"
+                                            TextColor="{DynamicResource Key=HealthSonarLightBlueColor}" />
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding DislikeCount, StringFormat='{0:n0} dislikes'}"
+                                            TextColor="{DynamicResource Key=HealthSonarBlueColor}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" TranslationY="-7">
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding FavoriteCount, StringFormat='{0:n0} favorites'}"
+                                            TextColor="{DynamicResource Key=HealthSonarLightBlueColor}" />
+                                        <Label
+                                            FontSize="14"
+                                            Text="{Binding CommentCount, StringFormat='{0:n0} comments'}"
+                                            TextColor="{DynamicResource Key=HealthSonarLightBlueColor}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+        <!--#endregion-->
+        <StackLayout
+            x:Name="activitYIndicatorWrapper"
+            Padding="12"
+            AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            IsVisible="{Binding IsBusy}">
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Key=HealthSonarLightBlueColor}" />
+        </StackLayout>
+
+
+    </AbsoluteLayout>
+</pages:BasePage>
