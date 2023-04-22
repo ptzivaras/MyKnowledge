@@ -1,0 +1,15 @@
+we need designe app / code that implements this
+..
+-users have a library of books that they can add or remove from
+-users can set a book freom their libarry as active
+-the readin aplication rememebers hwre a suser left ooff in a given boook
+-the readin applicatin only displays a page of text at a time in active book
+
+-all books in lirbary
+-remember active book
+-remember last pages in alll books
+-displays a page in active book
+
+make this now.
+-classes
+--representign a book
