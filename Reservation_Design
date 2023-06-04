@@ -1,0 +1,29 @@
+Requirements? Missing I dont know what to add here. TBC.
+ Problem? how to take account the party size,
+ cause party size is importan if worried about available seating so how many tables or capacity how many peolle can it fit?
+Business Logic? Example when a table is reserved how much time is it? Cause when can a party go and finish dinner until its
+                free for next one? This is business Logic.
+
+_____Data_Model_____
+1.Restaurant (A restarant has many tables)(A restarant has many Reservations)
+-name
+-location
+-hours of operation
+
+2.Table (how to find the arrangement)(1 table can hae many Seartin arangements,1 table can be reserved many times in a day)
+-restarant(FK)
+-capacity
+
+3.Customer(A customer can have many reservation)
+-name
+-phone
+
+4.Reservation(Reservation can have multiple Seating Arrangement, if big party size and need join tables together)
+-restaurant(fk)
+-customer(fk)
+-date/time
+-party size
+
+5.Seating Arrangement (How to assign tables to reservations)(SeatingArrangment is unique with combination of its 2 fk)
+-table(fk)
+-reservation(fk)
