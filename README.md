@@ -28,13 +28,10 @@ This is my Live Diary to check my progress in 1 Year
 4) React Course, Extremely beginner.. need more time
 
 # Company 
+-Android
+0) SmartInsoleProject: You Login and then you choose a recording from a List then you can see LiveData using HeatMap or data Displayed in Charts(LineChart+PointsGraph) or you can choose an option from a spinner to see other data in Lists that have inside Graphs other Lists etc.
 
-0)Java on Android Studio(I decided to focus on core java since i had problems with my job tasks so i bought UDEMY Course & to prove to myself that i am  OK! since i
-  am a Junior), StackOverflow, Youtube, Forums etc
-
-1)Activities, Fragments, Intents, LifeCycle of Fragments/Activities
-
-2)Spinners(custom code), RecycleView + CardView &(Layouts, Gravity, Margin, Weight), RecycleView with different Layouts depending what i click on a spinner for example, Front End Stuff
+1)Spinners(custom code), RecycleView + CardView &(Layouts, Gravity, Margin, Weight), RecycleView with different Layouts depending what i click on a spinner for example, Front End Stuff
 
 3)Transfer Data with BlueTooth Low Energy 
 
@@ -47,15 +44,16 @@ This is my Live Diary to check my progress in 1 Year
 
 7)Handlers, Threads, Multiple Threads, Runnables , PostDelay, Countdown etc..
 
-8)Swagger, Postman.. learned postman to test api calls..loved it
+8) Postman(wrote all ApiCalls GET/POST/PUT  ~15)
 
-9)Design.. writing XML Code or using Android studio Design TAB.
+10)Grandle(Beginner)
 
-10)Grandle .. not an expert but i get the job done
+12)Used Debugger, Unit Tests(Beginner)
 
-12)Logs, Debugger(Saved me..), Unit Tests(Very usefull saves time & sometimes only way to fixsomething nefore DeadLine!!)
+-Xamarin.Forms
+2 Projects: worked with ViewModels, Bindings, Navigation, Commands, Transactions, UI, SideMenu using Shell Moving data between Shellpages etc.
 
-13)Git Plugin on Android Studio, Github for Repository..
+
 
 # RoadMap
 
